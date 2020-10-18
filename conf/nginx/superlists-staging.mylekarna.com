@@ -8,5 +8,6 @@ server {
 
     location / {
         proxy_pass http://unix:/tmp/superlists-staging.ottg.eu.socket;
+        proxy_set_header Host $host;
     }
 }
