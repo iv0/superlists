@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn server for superlists-staging.mylekarna.com
+
+[Service]
+Restart=on-failure
+User=ivo
+WorkingDirectory=/home/ivo/sites/superlists-staging.mylekarna.com
+EnvironmentFile=/home/ivo/sites/superlists-staging.mylekarna.com/.env
+
+ExecStart=/home/ivo/sites/superlists-staging.mylekarna.com/virtualenv/bin/gunicorn \
+    --bind unix:/tmp/superlists-staging.mylekarna.com.socket \
+    superlists.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
